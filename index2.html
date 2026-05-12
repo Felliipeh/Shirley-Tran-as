@@ -7,26 +7,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: { 
-                        brand: { 
-                            gold: '#D4AF37',
-                            dark: '#050505',
-                            surface: '#121212',
-                            goldText: '#E5C467'
-                        } 
+                        brand: { gold: '#D4AF37', dark: '#050505', surface: '#121212' } 
                     },
-                    fontFamily: { 
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'serif']
-                    }
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
                 }
             }
         }
@@ -34,78 +25,92 @@
 
     <style type="text/tailwindcss">
         @layer components {
+            body {
+                background: #040404;
+                background-attachment: fixed;
+            }
             .profile-ring {
                 @apply relative rounded-full p-1 mb-6 flex items-center justify-center;
                 background: linear-gradient(135deg, #D4AF37 0%, #050505 50%, #D4AF37 100%);
             }
-            
-            .profile-img {
-                @apply w-full h-full object-cover rounded-full border-4 border-brand-dark;
+            .profile-img-container {
+                @apply w-40 h-40 relative overflow-hidden rounded-full border-4 border-brand-dark;
             }
-
+            .profile-img-base {
+                @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-700;
+            }
             .nav-link {
-                @apply flex items-center justify-between w-full p-4 rounded-2xl
-                       bg-brand-surface border border-white/5 
-                       transition-all duration-300 hover:border-brand-gold/40 
-                       hover:bg-white/5 active:scale-[0.98];
+                @apply flex items-center justify-between w-full p-4 rounded-2xl bg-brand-surface/80 backdrop-blur-sm border border-white/5 transition-all duration-300 hover:border-brand-gold/40 active:scale-[0.98];
             }
-
-            /* Botão Principal Estilo image_9c669e.png */
             .nav-link-primary {
-                @apply flex items-center justify-center gap-3 w-full py-4 px-8 rounded-full
-                       bg-[#d1a842] text-black font-bold text-sm tracking-widest uppercase
-                       transition-all duration-300 hover:brightness-105 active:scale-[0.98]
-                       shadow-[0_4px_15px_rgba(0,0,0,0.3)];
+                @apply flex items-center justify-center gap-3 w-full py-4 px-8 rounded-full bg-brand-gold text-black font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:brightness-110 active:scale-[0.98] shadow-lg shadow-brand-gold/10;
             }
+            .gold-divider {
+                @apply w-24 h-[3px] mx-auto rounded-full;
+                background: linear-gradient(90deg, #8A6E2F 0%, #D4AF37 50%, #8A6E2F 100%);
+            }
+            .reveal { animation: reveal 0.8s ease forwards; opacity: 0; }
         }
-
-        .reveal { 
-            animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-            opacity: 0;
-        }
-
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes reveal { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 
-<body class="bg-brand-dark text-white/90 antialiased min-h-screen flex flex-col items-center px-6">
+<body class="text-white/90 antialiased min-h-screen flex flex-col items-center px-6 font-sans">
 
-    <button onclick="handleShare()" title="Compartilhar" class="fixed top-6 right-6 z-50 bg-brand-gold text-brand-dark p-3 rounded-full shadow-lg hover:brightness-110 transition-all flex items-center justify-center">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    <!-- Botão Compartilhar -->
+    <button onclick="handleShare()" class="fixed top-6 right-6 z-50 bg-brand-gold text-brand-dark p-3 rounded-full shadow-lg active:scale-95 transition-transform">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M8.59 13.51l6.83 3.98m-.01-10.98l-6.82 3.98M21 7a3 3 0 11-6 0 3 3 0 016 0zm-12 5a3 3 0 11-6 0 3 3 0 016 0zm12 5a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
     </button>
 
-    <div class="max-w-md w-full flex flex-col items-center py-12 flex-grow">
+    <main class="max-w-md w-full flex flex-col items-center py-12 flex-grow">
         
+        <!-- Header -->
         <header class="text-center mb-10 reveal">
-            <div class="profile-ring w-44 h-44 mx-auto">
-                <img src="/img/logo.jpeg" alt="Shirley Tranças" class="profile-img" />
+         
+            <div class="flex flex-col items-center mt-4 mb-2">
+                <img src="/img/image.png" alt="Logo Shirley Tranças" class="w-44 max-w-full" />
             </div>
             
-            <div class="w-24 h-1 bg-gradient-to-r from-brand-gold/20 via-brand-gold to-brand-gold/20 rounded-full mx-auto mb-6"></div>
-            
-            <div class="inline-block px-4 py-1.5 rounded-full border border-brand-gold/20 bg-brand-gold/5">
-                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-widest">
-                    ✨ Elevando sua autoestima
-                </span>
+            <div class="inline-block px-4 py-1.5 rounded-full border border-brand-gold/20 bg-brand-gold/5 mb-6">
+                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-widest">✨ Elevando sua autoestima</span>
             </div>
+
+            <div class="gold-divider"></div>
         </header>
 
+        <!-- Menu de Links -->
         <nav class="w-full space-y-4 reveal" style="animation-delay: 0.2s;">
             
-            <a href="https://wa.me/5598984021537" target="_blank" class="nav-link-primary">
-                <svg class="w-6 h-6" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.605 1.937 6.563L4 29l7.688-1.969A12.93 12.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22.917c-2.021 0-4.004-.531-5.719-1.531l-.406-.24-4.563 1.172 1.219-4.438-.26-.417C5.531 18.021 5 16.531 5 15c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm6.073-7.635c-.334-.167-1.979-.979-2.286-1.094-.307-.115-.531-.167-.755.167-.224.334-.865 1.094-1.06 1.318-.195.224-.39.251-.724.084-.334-.167-1.409-.519-2.684-1.653-.993-.885-1.664-1.977-1.86-2.311-.195-.334-.021-.514.146-.681.15-.149.334-.39.501-.584.167-.195.223-.334.334-.557.112-.223.056-.418-.028-.584-.084-.167-.755-1.823-1.034-2.495-.272-.654-.548-.565-.755-.575-.195-.008-.418-.008-.64-.008-.223 0-.584.084-.89.418-.307.334-1.17 1.146-1.17 2.797 0 1.651 1.198 3.244 1.364 3.469.167.223 2.36 3.606 5.718 4.916.8.345 1.422.551 1.908.705.802.256 1.532.22 2.11.134.644-.096 1.979-.808 2.256-1.59.278-.782.278-1.454.195-1.59-.084-.134-.307-.215-.64-.382z"/>
-                </svg>
-                Agendar Horário
+            <!-- 1. WhatsApp Profissional -->
+            <a href="https://wa.me/559881638054" target="_blank" class="nav-link">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-white/5 rounded-lg text-brand-gold">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium">Agendar horário</span>
+                </div>
+                <svg class="w-4 h-4 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
 
-            <a href="#" class="nav-link">
+            <!-- 2. Catálogo -->
+            <a href="https://wa.me/c/559881638054" target="_blank" class="nav-link">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-white/5 rounded-lg text-brand-gold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium">Catálogo de Serviços</span>
+                </div>
+                <svg class="w-4 h-4 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+
+            <!-- 3. Localização -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Shirley+Tranças+São+Luís+MA" target="_blank" class="nav-link">
                 <div class="flex items-center gap-3">
                     <div class="p-2 bg-white/5 rounded-lg text-brand-gold">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
@@ -115,34 +120,30 @@
                 <svg class="w-4 h-4 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
 
+            <!-- 4. Instagram -->
             <a href="https://www.instagram.com/shirley_trancista/" target="_blank" class="nav-link">
                 <div class="flex items-center gap-3">
                     <div class="p-2 bg-white/5 rounded-lg text-brand-gold">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/>
+                        </svg>
                     </div>
-                    <span class="text-sm font-medium">Galeria de Trabalhos</span>
+                    <span class="text-sm font-medium">Acompanhe no Instagram</span>
                 </div>
                 <svg class="w-4 h-4 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
         </nav>
 
+        <!-- Footer -->
         <footer class="mt-auto pt-16 pb-8 text-center reveal" style="animation-delay: 0.4s;">
             <p class="text-brand-gold font-bold text-[10px] tracking-[0.3em] uppercase mb-4">São Luís • Maranhão</p>
-            
-            <div class="space-y-2">
-                <p class="text-[10px] text-white/40 uppercase tracking-widest font-medium">
-                    © 2024 Shirley Tranças • Todos os direitos reservados
-                </p>
-                <div class="h-px w-12 bg-white/10 mx-auto my-3"></div>
-                <p class="text-[9px] text-white/20 uppercase tracking-wider">
-                    Desenvolvido por 
-                    <a href="https://wa.me/5598984021537" target="_blank" class="text-brand-gold/50 hover:text-brand-gold transition-colors font-bold decoration-brand-gold/20 underline-offset-4 underline">
-                        MenuBairro
-                    </a>
-                </p>
-            </div>
+            <p class="text-[11px] mb-1">
+                © Todos os direitos reservados a <span class="text-brand-gold font-bold">Shirley Tranças</span>
+            </p>
+            <p class="text-[9px] text-white/20 uppercase tracking-wider">Desenvolvido por <a href="https://lipecode.menubairro.com.br/" class="text-brand-gold/50 font-bold underline" target="_blank">MenuBairro</a></p>
         </footer>
-    </div>
+    </main>
 
     <script>
         const handleShare = async () => {
@@ -158,8 +159,17 @@
                     await navigator.clipboard.writeText(data.url);
                     alert('Link copiado!');
                 }
-            } catch (err) { console.log('Share cancelado'); }
+            } catch (err) { }
         };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const mainImg = document.getElementById('profileMain');
+            const altImg = document.getElementById('profileAlt');
+            setTimeout(() => {
+                mainImg.classList.add('opacity-0');
+                altImg.classList.replace('opacity-0', 'opacity-100');
+            }, 3000);
+        });
     </script>
 </body>
 </html>
