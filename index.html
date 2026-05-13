@@ -1,34 +1,257 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modelos - Shirley Tranças</title>
+    <title>Shirley Tranças | Especialista em Tranças</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { gold: '#D4AF37', dark: '#050505', surface: '#121212', goldLight: '#F3E5AB' }
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
+        body {
+            background: #040404;
+            color: rgba(255,255,255,0.9);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .avatar-wrapper {
+            position: relative;
+            width: 12rem;
+            height: 12rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid #D4AF37;
+            background: #000;
+            z-index: 10;
+        }
+        .avatar-img, .avatar-logo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            transition: all 0.7s;
+            object-fit: contain;
+            padding: 0.25rem;
+        }
+        .avatar-img {
+            animation: profileShow 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 2;
+        }
+        .avatar-logo {
+            animation: logoHide 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            z-index: 1;
+        }
+        @keyframes profileShow {
+            0%, 20% { opacity: 0; transform: scale(0.8); }
+            40%, 100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes logoHide {
+            0%, 20% { opacity: 1; transform: scale(1); }
+            40%, 100% { opacity: 0; transform: scale(1.1); }
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            background: rgba(18,18,18,0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        .nav-link:hover {
+            border-color: rgba(212,175,55,0.4);
+        }
+        .nav-link:active {
+            transform: scale(0.98);
+        }
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(to right, #D4AF37, #B8860B);
+            color: #050505;
+            font-weight: bold;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 10px 24px 0 rgba(212,175,55,0.10);
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+        }
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+        .reveal {
+            animation: reveal 0.8s ease forwards;
+            opacity: 0;
+        }
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-brand-dark min-h-screen flex flex-col items-center justify-center px-4 py-12" style="background:#0A0A0A;">
-    <div class="max-w-md w-full mx-auto flex flex-col items-center gap-8">
-        <h1 class="text-3xl font-bold text-brand-gold mb-2 text-center" style="color:#D4AF37;">Modelos de Telas</h1>
-        <p class="text-white/60 text-center mb-6">Escolha um modelo para visualizar:</p>
-        <div class="w-full flex flex-col gap-4">
-            <a href="index1.html" class="w-full p-5 rounded-xl bg-white/5 border border-brand-gold/30 text-white flex items-center gap-4 hover:bg-brand-gold/10 transition">
-                <span class="font-bold text-lg" style="color:#D4AF37;">Modelo 1</span>
-                <span class="text-xs text-white/60">(Perfil clássico)</span>
-            </a>
-            <a href="index2.html" class="w-full p-5 rounded-xl bg-white/5 border border-brand-gold/30 text-white flex items-center gap-4 hover:bg-brand-gold/10 transition">
-                <span class="font-bold text-lg" style="color:#D4AF37;">Modelo 2</span>
-                <span class="text-xs text-white/60">(Perfil moderno)</span>
-            </a>
-            <a href="index3.html" class="w-full p-5 rounded-xl bg-white/5 border border-brand-gold/30 text-white flex items-center gap-4 hover:bg-brand-gold/10 transition">
-                <span class="font-bold text-lg" style="color:#D4AF37;">Modelo 3</span>
-                <span class="text-xs text-white/60">(Galeria/Instagram)</span>
-            </a>
-        </div>
 
-    </div>
+<body>
+    <!-- Botão Share -->
+    <button onclick="handleShare()"
+        class="fixed top-6 right-6 z-50 flex items-center justify-center w-11 h-11 bg-brand-surface/60 border border-white/10 text-brand-gold rounded-full shadow-2xl active:scale-90 transition-all backdrop-blur-xl hover:border-brand-gold/40"
+        title="Compartilhar página">
+        <i class="fa-solid fa-arrow-up-from-bracket text-sm" aria-label="Compartilhar"></i>
+        <span class="sr-only">Compartilhar</span>
+    </button>
+
+    <main class="max-w-md w-full flex flex-col items-center py-10 flex-grow">
+
+        <!-- Header -->
+        <header class="w-full flex flex-col items-center text-center mb-8 reveal">
+            <div class="relative w-56 h-56 mb-4 flex items-center justify-center">
+                <div
+                    class="absolute inset-0 rounded-full border border-dashed border-brand-gold/20 animate-[spin_30s_linear_infinite]">
+                </div>
+
+                <div class="avatar-wrapper shadow-[0_0_50px_rgba(212,175,55,0.15)]">
+                    <img src="/img/ft-perfil.jpeg" alt="Shirley" class="avatar-img" />
+                    <img src="/img/logo.jpeg" alt="Logo" class="avatar-logo" />
+                </div>
+
+                <div
+                    class="absolute -bottom-1 bg-brand-gold text-brand-dark text-[9px] font-black px-6 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-xl z-20">
+                    Agenda Aberta
+                </div>
+            </div>
+
+            <h1 class="text-2xl font-serif italic text-white/90 mb-1 leading-tight">Shirley Tranças</h1>
+
+            <br>
+            <div class="flex flex-col items-center">
+                <p class="text-brand-goldLight/60 text-[9px] font-bold uppercase tracking-[0.4em]">✨ Elevando sua
+                    autoestima ✨</p>
+                <div class="h-[1px] w-12 mt-3 bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent"></div>
+            </div>
+        </header>
+
+        <!-- Navegação -->
+        <nav class="w-full space-y-3.5 reveal nav-delay">
+            <a href="https://wa.me/559881638054?text=Olá%20Shirley,%20vi%20seu%20perfil%20no%20Instagram%20e%20gostaria%20de%20saber%20mais%20sobre%20seus%20serviços!"
+                target="_blank" rel="noopener" class="btn-primary">
+                <span class="flex items-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Agendar Horário
+                </span>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i>
+            </a>
+
+            <a href="https://www.instagram.com/shirley_trancista/" target="_blank" rel="noopener" class="nav-link">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 flex items-center justify-center bg-white/5 rounded-lg text-brand-gold text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <span class="text-sm font-medium">Instagram Oficial</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] text-white/20"></i>
+            </a>
+
+            <a href="https://wa.me/c/559881638054" target="_blank" rel="noopener" class="nav-link">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 flex items-center justify-center bg-white/5 rounded-lg text-brand-gold text-sm">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="text-sm font-medium">Catálogo de Serviços</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] text-white/20"></i>
+            </a>
+
+            <!-- Link do Maps Atualizado -->
+            <a href="https://maps.app.goo.gl/1y7X2s9VRX8bRDH86" target="_blank" rel="noopener" class="nav-link">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 flex items-center justify-center bg-white/5 rounded-lg text-brand-gold text-sm">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <span class="text-sm font-medium">Nossa Localização</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] text-white/20"></i>
+            </a>
+        </nav>
+
+        <!-- Footer Profissional -->
+        <footer class="mt-auto pt-16 pb-8 text-center reveal footer-delay">
+            <div class="mb-6">
+                <p class="text-white/40 text-[10px] uppercase tracking-[0.3em] font-semibold">© 2026 Shirley Tranças</p>
+                <p class="text-white/20 text-[9px] mt-1">Todos os direitos reservados</p>
+            </div>
+
+            <div class="h-[1px] w-8 bg-white/5 mx-auto mb-6"></div>
+
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-white/20 text-[8px] uppercase tracking-widest">Plataforma</span>
+                <a href="https://wa.me/5598984021537?text=Olá,%20vi%20o%20site%20da%20Shirley%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20como%20ter%20um%20perfil%20assim."
+                    target="_blank" rel="noopener"
+                    class="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.02] border border-white/5 hover:border-brand-gold/30 transition-all duration-500">
+                    <span
+                        class="text-[10px] text-white/40 group-hover:text-brand-gold transition-colors font-medium tracking-wide">
+                        Desenvolvido por <span class="text-brand-gold/60 font-bold">MenuBairro</span>
+                    </span>
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Adiciona delays de animação via JS para manter efeito
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('.nav-delay');
+            if (nav) nav.style.animationDelay = '0.2s';
+            const footer = document.querySelector('.footer-delay');
+            if (footer) footer.style.animationDelay = '0.4s';
+        });
+        const handleShare = async () => {
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title: 'Shirley Tranças', url: window.location.href });
+                } else {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Link copiado!');
+                }
+            } catch (err) { console.error(err); }
+        };
+    </script>
 </body>
+
 </html>
